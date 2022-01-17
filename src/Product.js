@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './Product.css'
+import PropTypes from 'prop-types'
 
-
-export const Product = (props) => {
+const Product = (props) => {
   return (
     <li className={ props.available ? 'purchase-available' : '' }
         onClick={ props.clickListener }>
