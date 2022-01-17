@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export default function WalletView({
   totalMoney,
   addMoney,
@@ -10,6 +8,7 @@ export default function WalletView({
   function increaseMoney(key) {
     setMoney({ ...money, [key]: money[key] + 1 });
     addMoney(Number(key));
+
     const message = `${key}원이 투입되었습니다.`;
     setMessages((messages) => messages.concat(message));
   }

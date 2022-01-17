@@ -7,6 +7,8 @@ import WalletView from "./components/WalletView";
 function App() {
   const [totalMoney, setTotalMoney] = useState(0);
   const [remainingMoney, setRemainingMoney] = useState(0);
+  const [messages, setMessages] = useState([]);
+  const [products, setProducts] = useState([]);
   const [money, setMoney] = useState({
     10: 0,
     50: 0,
@@ -16,8 +18,6 @@ function App() {
     5000: 0,
     10000: 0,
   });
-  const [messages, setMessages] = useState([]);
-  const [products, setProducts] = useState([]);
 
   function addMoney(amount) {
     setTotalMoney((totalMoney) => totalMoney + amount);
@@ -37,10 +37,13 @@ function App() {
     setMoney(tmpMoney);
   }
 
-  useEffect(async () => {
-    const file = await fetch("http://localhost:3001/products");
-    const productsJson = await file.json();
-    setProducts(productsJson);
+  useEffect(() => {
+    async function fetchData() {
+      const file = await fetch("http://localhost:3001/products");
+      const productsJson = await file.json();
+      setProducts(productsJson);
+    }
+    fetchData();
   }, []);
 
   return (
