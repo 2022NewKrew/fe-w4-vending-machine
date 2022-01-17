@@ -113,12 +113,8 @@ button.money-item:hover {
   flex: 25%;
   margin: auto 0;
   border: 1px solid grey;
+  transition: 0.3s;
 }
-
-/* .product-container:hover {
-  background-color: #f6bd60;
-  color: white;
-} */
 
 .product-name {
   padding: 10px 0;
@@ -127,6 +123,11 @@ button.money-item:hover {
 .product-container.buyable {
   box-shadow: inset 0 0 5px green;
   cursor: pointer;
+}
+
+.product-container.buyable:hover {
+  /* background-color: #f6bd60; */
+  box-shadow: inset 0 0 15px rgb(15, 145, 89);
 }
 
 .product-container.out-of-stock {
