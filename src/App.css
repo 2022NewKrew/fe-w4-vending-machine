@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
   display: flex;
@@ -44,10 +48,12 @@
 }
 
 .process-view {
+  margin: 20px 0 0 10px;
   width: 30%;
 }
 
 .wallet-view {
+  margin-top: 10px;
   width: 20%;
 }
 
@@ -90,8 +96,45 @@ button.money-item:hover {
   margin: 30px 0;
 }
 
-.message {
+.message-container {
   height: 300px;
   width: 100%;
   border: 1px solid black;
+  overflow-y: auto;
+}
+
+.product-view {
+  display: flex;
+  flex-wrap: wrap;
+  height: 500px;
+}
+
+.product-container {
+  flex: 25%;
+  margin: auto 0;
+  border: 1px solid grey;
+}
+
+/* .product-container:hover {
+  background-color: #f6bd60;
+  color: white;
+} */
+
+.product-name {
+  padding: 10px 0;
+}
+
+.product-container.buyable {
+  box-shadow: inset 0 0 5px green;
+  cursor: pointer;
+}
+
+.product-container.out-of-stock {
+  box-shadow: inset 0 0 5px #282c34;
+  cursor: not-allowed;
+}
+
+.product-container.not-buyable {
+  box-shadow: inset 0 0 5px crimson;
+  cursor: not-allowed;
 }

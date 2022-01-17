@@ -1,0 +1,24 @@
+{
+  "products": {
+    "코카콜라": { "price": 600, "quantity": 5 },
+    "사이다": { "price": 500, "quantity": 5 },
+    "환타": { "price": 900, "quantity": 5 },
+    "미란다": { "price": 1000, "quantity": 5 },
+    "천연사이다": { "price": 1010, "quantity": 5 },
+    "닥터페퍼": { "price": 1050, "quantity": 5 },
+    "참이슬": { "price": 550, "quantity": 5 },
+    "하이트": { "price": 3200, "quantity": 5 },
+    "포카리스웨트": { "price": 1850, "quantity": 5 },
+    "밀키스": { "price": 2000, "quantity": 5 },
+    "봉봉": { "price": 4500, "quantity": 5 },
+    "바나나우유": { "price": 5500, "quantity": 5 },
+    "이프르": { "price": 5000, "quantity": 5 },
+    "쌕썍": { "price": 6000, "quantity": 5 },
+    "쥬시쿨": { "price": 6500, "quantity": 5 },
+    "핫식스": { "price": 7000, "quantity": 5 },
+    "스파클링": { "price": 8700, "quantity": 5 },
+    "펩시콜라": { "price": 13000, "quantity": 5 },
+    "자연은알로에": { "price": 15720, "quantity": 5 },
+    "초록매실": { "price": 14200, "quantity": 5 }
+  }
+}

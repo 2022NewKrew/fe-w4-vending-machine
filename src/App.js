@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProductView from "./components/ProductView";
 import ProcessView from "./components/ProcessView";
 import WalletView from "./components/WalletView";
@@ -17,6 +17,7 @@ function App() {
     10000: 0,
   });
   const [messages, setMessages] = useState([]);
+  const [products, setProducts] = useState([]);
 
   function addMoney(amount) {
     setTotalMoney((totalMoney) => totalMoney + amount);
@@ -36,9 +37,22 @@ function App() {
     setMoney(tmpMoney);
   }
 
+  useEffect(async () => {
+    const file = await fetch("http://localhost:3001/products");
+    const productsJson = await file.json();
+    setProducts(productsJson);
+  }, []);
+
   return (
     <div className="App">
-      <ProductView></ProductView>
+      <ProductView
+        remainingMoney={remainingMoney}
+        setRemainingMoney={setRemainingMoney}
+        products={products}
+        setProducts={setProducts}
+        messages={messages}
+        setMessages={setMessages}
+      ></ProductView>
       <ProcessView
         remainingMoney={remainingMoney}
         setMoney={setMoney}

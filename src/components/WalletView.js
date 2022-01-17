@@ -31,7 +31,7 @@ export default function WalletView({
   return (
     <div className="wallet-view">
       {moneyMembers}
-      <div>{totalMoney}원</div>
+      <div>투입금액: {totalMoney}원</div>
     </div>
   );
 }
