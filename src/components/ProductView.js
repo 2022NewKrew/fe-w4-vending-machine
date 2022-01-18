@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 
 import Product from "./product/Product";
@@ -16,6 +16,7 @@ export default function ProductView() {
   const { remainingMoney, setRemainingMoney, refundMoney } =
     useContext(MoneyContext);
   const { setMessages } = useContext(MessageContext);
+  const [refundHandler, setRefundHandler] = useState(undefined);
 
   function buyProduct(name) {
     const price = products[name].price;
@@ -38,11 +39,21 @@ export default function ProductView() {
       tmpProducts[name].quantity -= 1;
       setProducts(tmpProducts);
     }
+    setMessages((messages) => messages.concat(message));
 
     setTimeout(() => {
+      message = `${name} 상품이 나왔습니다.`;
       setMessages((messages) => messages.concat(message));
-      setRemainingMoney((remainingMoney) => refundMoney(remainingMoney));
     }, 2000);
+
+    setRefundHandler((refundHandler) => {
+      if (refundHandler !== undefined) {
+        clearTimeout(refundHandler);
+      }
+      return setTimeout(() => {
+        setRemainingMoney((remainingMoney) => refundMoney(remainingMoney));
+      }, 2000);
+    });
   }
 
   const productList = Object.keys(products).map((name) => (
