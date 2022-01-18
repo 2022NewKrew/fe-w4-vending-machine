@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useStore } from '../../context/Store';
 
 const Wrapper = styled.div`
     overflow: auto;
@@ -7,5 +8,9 @@ const Wrapper = styled.div`
 `;
 
 export default function ProgressLog() {
-    return <Wrapper></Wrapper>;
+    const { logList } = useStore();
+
+    const logs = logList.map((log) => <li>{log}</li>);
+
+    return <Wrapper>{logs}</Wrapper>;
 }

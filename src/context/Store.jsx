@@ -19,7 +19,7 @@ export function useStore() {
 export function StoreProvider({ children }) {
     const [insertedMoney, setInsertedMoney] = useState(0);
     const [moneyHave, setMoneyHave] = useState(items);
-    const [log, setLog] = useState([]);
+    const [logList, setLogList] = useState([]);
 
     return (
         <StoreContext.Provider
@@ -28,8 +28,8 @@ export function StoreProvider({ children }) {
                 setInsertedMoney,
                 moneyHave,
                 setMoneyHave,
-                log,
-                setLog,
+                logList,
+                setLogList,
             }}
         >
             {children}
