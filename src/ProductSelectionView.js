@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import Product from './Product'
 import './ProductSelectionView.css'
 import { InvestmentContext, ACTION_TYPE } from './InvestmentContext'
+import { useDebouncing } from './hooks/useDebouncing'
 
 const initialProductList = [
   {
@@ -66,11 +67,10 @@ const initialProductList = [
   }
 ]
 
-let timeId
-
 const ProductSelectionView = (props) => {
   const [productList, setProductList] = useState(initialProductList)
   const { state: contextState, dispatch } = useContext(InvestmentContext)
+  const debounceDispatch = useDebouncing(1000, dispatch)
   
   const productClickListener = (idx) => {
     const { title, price, count } = productList[idx]
@@ -83,29 +83,25 @@ const ProductSelectionView = (props) => {
       })
       productList[idx].count -= 1
       setProductList([...productList])
-      
-      clearTimeout(timeId)
-      
-      timeId = setTimeout(() => {
-        dispatch({
-          type: ACTION_TYPE.RETURN_EXCHANGE
-        })
-      }, 2000)
+  
+      debounceDispatch({
+        type: ACTION_TYPE.RETURN_EXCHANGE
+      })
     }
   }
   
   return (
     <div className="product-selection">
       {
-        productList.map((product, idx) => {
-          return (<Product
+        productList.map((product, idx) => (
+          <Product
             key={ idx }
             idx={ idx }
             title={ product.title }
             price={ product.price }
             available={ contextState.investment >= product.price && product.count > 0 }
             clickListener={ productClickListener } />)
-        })
+        )
       }
     </div>
   )
