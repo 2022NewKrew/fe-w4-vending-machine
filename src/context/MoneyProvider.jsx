@@ -1,7 +1,12 @@
-import { useState } from 'react';
-import MoneyContext from './MoneyContext';
+import { useState, useContext, createContext } from 'react';
 
-export default function MoneyProvider({ children }) {
+const MoneyContext = createContext();
+
+export function useInputMoney() {
+    return useContext(MoneyContext);
+}
+
+export function MoneyProvider({ children }) {
     const [insertedMoney, setInsertedMoney] = useState(0);
 
     return (
