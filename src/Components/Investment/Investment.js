@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './Investment.css'
+import './Investment.css'
 
 const Investment = (props) => {
   return (

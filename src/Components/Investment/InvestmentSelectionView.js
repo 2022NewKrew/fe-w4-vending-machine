@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import Investment from './Investment'
 import { ACTION_TYPE, InvestmentContext } from '../../Context/InvestmentContext'
-import styles from './InvestmentSelectionView.css'
+import './InvestmentSelectionView.css'
 
 export const InvestmentSelectionView = () => {
   const { state: contextState, dispatch } = useContext(InvestmentContext)

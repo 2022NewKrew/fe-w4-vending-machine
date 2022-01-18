@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Product.css'
+import './Product.css'
 import PropTypes from 'prop-types'
 
 const Product = (props) => {
