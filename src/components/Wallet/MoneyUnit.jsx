@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { useContext } from 'react';
-import MoneyContext from '../../context/MoneyContext';
+import { useInputMoney } from '../../context/MoneyProvider';
 
 const Wrapper = styled.li`
     &:after {
@@ -18,8 +17,7 @@ const Button = styled.button`
     border-radius: 5px;
 `;
 
-export default function MoneyUnit({ num, value, idx, setMoneyHave }) {
-    const { setInsertedMoney } = useContext(MoneyContext);
+    const { setInsertedMoney } = useInputMoney();
 
     const handleInsertedMoney = () => {
         if (num === 0) {
