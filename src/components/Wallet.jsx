@@ -1,43 +1,43 @@
-import React, { useCallback } from "react";
-import { useState } from "react/cjs/react.development";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import data from "../data/data.json";
+import { ContextStore, INSERT_COIN } from "../store";
 
 const Wallet = () => {
-  const [current, setCurrent] = useState(data["current"]);
-  const [inputMoney, setInputMoney] = useState({});
-  const [total, setTotal] = useState(0);
+  const {
+    progressInfo: { currentMoney },
+    dispatch,
+  } = useContext(ContextStore);
 
-  const handleClick = useCallback(
-    (selectUnit) => {
-      const newCurrent = current.map(({ unit, count }) => ({
-        unit,
-        count: unit === selectUnit ? count - 1 : count,
-      }));
-      setCurrent(newCurrent);
-      setTotal((prev) => prev + selectUnit);
-    },
-    [current]
-  );
+  const handleClick = (selectUnit, index) => {
+    dispatch({
+      actionType: INSERT_COIN,
+      payload: { selectUnit, index },
+    });
+  };
+
+  const totalMoney = currentMoney.reduce((acc, cur) => {
+    return acc + cur.unit * cur.count;
+  }, 0);
+
+  const eachUnitCount = currentMoney.map(({ unit, count }, index) => (
+    <div key={unit} className="box">
+      <button
+        disabled={count <= 0}
+        onClick={() => {
+          handleClick(unit, index);
+        }}
+      >
+        {unit}원
+      </button>
+      <span>{count}개</span>
+    </div>
+  ));
 
   return (
     <Wrapper>
-      {current.map(({ unit, count }) => (
-        <div key={unit} className="box">
-          <button
-            disabled={!count}
-            onClick={() => {
-              handleClick(unit);
-            }}
-          >
-            {unit}원
-          </button>
-          <span>{count}개</span>
-        </div>
-      ))}
-
+      {eachUnitCount}
       <div className="box">
-        <span className="total">{total}원</span>
+        <span className="total">{totalMoney}원</span>
       </div>
     </Wrapper>
   );

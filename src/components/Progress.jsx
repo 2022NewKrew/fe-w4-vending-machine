@@ -1,18 +1,27 @@
-import React from "react";
-import { useState } from "react/cjs/react.development";
+import React, { useCallback, useContext } from "react";
 import styled from "styled-components";
+import { ContextStore, RETURN_CHANGE } from "../store";
 
 const Progress = () => {
-  const [money, setMoney] = useState(0);
+  const {
+    progressInfo: { inputMoney, actionLog },
+    dispatch,
+  } = useContext(ContextStore);
+
+  const handleClick = useCallback(() => {
+    dispatch({
+      actionType: RETURN_CHANGE,
+    });
+  }, [dispatch]);
+
+  const logs = actionLog.map((log, idx) => <li key={idx}>{log}</li>);
 
   return (
     <Wrapper>
-      <div className="money">{money} 원</div>
-      <button>반환</button>
+      <div className="money"> {inputMoney} 원</div>
+      <button onClick={handleClick}>반환</button>
       <div className="description">
-        <ul>
-          <li>500원 투입됬음</li>
-        </ul>
+        <ul>{logs}</ul>
       </div>
     </Wrapper>
   );

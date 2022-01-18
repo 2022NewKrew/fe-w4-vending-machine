@@ -1,12 +1,13 @@
 import React from "react";
 import Product from "./Product";
 import styled from "styled-components";
+import data from "../data/data.json";
 
-const ProductList = ({ products }) => {
+const ProductList = () => {
   return (
     <Wrapper>
-      {products.map((ele) => (
-        <Product key={ele.id} info={ele} />
+      {data["product"].map((product) => (
+        <Product key={product.id} productInfo={product} />
       ))}
     </Wrapper>
   );

@@ -1,27 +1,61 @@
-import React, { useCallback, useState } from "react";
+import React, { useEffect, useState, useCallback, useContext } from "react";
 import styled from "styled-components";
 import classNames from "classnames";
-import useToggle from "../hooks/useToggle";
+import { ContextStore, RETURN_CHANGE, SELECT_PRODUCT } from "../store";
 
-const Product = ({ info }) => {
-  const [stock, setStock] = useState(info.stock);
-  const [select, toggleSelect] = useToggle(false);
+let timer = 0;
 
-  const titleClass = classNames("title", { select }, { soldout: !stock });
+const Product = ({ productInfo: { name, price, stock } }) => {
+  const {
+    progressInfo: { inputMoney },
+    dispatch,
+    insertMode,
+  } = useContext(ContextStore);
+
+  const [productStock, setProductStock] = useState(stock);
+  const [selectable, setSelectable] = useState(false);
+  const [returnMode, setReturnMode] = useState(false);
+
+  const titleClass = classNames("title", { selectable });
 
   const handleClick = useCallback(() => {
-    if (!stock) return;
-    toggleSelect();
-  }, [stock, toggleSelect]);
+    if (!selectable) return;
+    if (timer) clearTimeout(timer);
+    dispatch({
+      actionType: SELECT_PRODUCT,
+      payload: { name, price },
+    });
+
+    setProductStock((prev) => prev - 1);
+
+    timer = setTimeout(() => {
+      setReturnMode(true);
+    }, 2000);
+  }, [selectable, dispatch, name, price]);
+
+  useEffect(() => {
+    if (returnMode && inputMoney) {
+      dispatch({
+        actionType: RETURN_CHANGE,
+      });
+      setReturnMode(false);
+    }
+  }, [returnMode]);
+
+  useEffect(() => {
+    if (insertMode) clearTimeout(timer);
+  }, [insertMode]);
+
+  useEffect(() => {
+    setSelectable(price <= inputMoney && productStock > 0);
+  }, [price, inputMoney, productStock]);
 
   return (
-    <Wrapper>
-      <div className={titleClass} onClick={handleClick}>
-        {info.name}
-      </div>
+    <Wrapper soldOut={!productStock} onClick={handleClick}>
+      <div className={titleClass}>{name}</div>
       <div className="price">
-        {info.price}
-        {!stock && <span>X</span>}
+        {price}
+        {!productStock && <span>X</span>}
       </div>
     </Wrapper>
   );
@@ -43,8 +77,9 @@ const Wrapper = styled.article`
     align-items: center;
     justify-content: center;
   }
-  .select {
+  .selectable {
     border: 4px dashed skyblue;
+    cursor: pointer;
   }
   .price {
     margin-top: 10px;
@@ -57,10 +92,12 @@ const Wrapper = styled.article`
       left: 20px;
     }
   }
-  .soldout {
-    cursor: not-allowed;
-    .price {
-      text-decoration: line-through;
-    }
-  }
+  ${({ soldOut }) =>
+    soldOut
+      ? `
+  cursor: not-allowed;
+  .price {
+    text-decoration: line-through;
+  }`
+      : null}
 `;
