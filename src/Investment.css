@@ -1,0 +1,22 @@
+.investment {
+  display: flex;
+  flex-direction: row;
+}
+
+.investment-amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 60px;
+  border: 1px solid grey;
+}
+
+.investment-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 60px;
+  border: 1px solid grey;
+}

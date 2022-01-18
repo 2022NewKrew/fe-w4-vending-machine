@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styles from './Investment.css'
 
 export const Investment = (props) => {
   return (
@@ -17,5 +18,5 @@ export const Investment = (props) => {
 Investment.propTypes = {
   clickListener: PropTypes.func.isRequired,
   count: PropTypes.number.isRequired,
-  investment: PropTypes.number.isRequired
+  investment: PropTypes.string.isRequired
 }
