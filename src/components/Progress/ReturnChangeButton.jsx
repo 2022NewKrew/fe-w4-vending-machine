@@ -9,7 +9,8 @@ const ReturnButton = styled.button`
 `;
 
 export default function ReturnChangeButton() {
-    const { insertedMoney, setInsertedMoney, setMoneyHave } = useStore();
+    const { insertedMoney, setInsertedMoney, setMoneyHave, setLogList } =
+        useStore();
 
     const handleReturnMoney = () => {
         if (insertedMoney === 0) {
@@ -32,6 +33,10 @@ export default function ReturnChangeButton() {
                 })
                 .reverse();
         });
+        setLogList((prevState) => [
+            ...prevState,
+            `잔돈 ${insertedMoney.toLocaleString()}원 반환`,
+        ]);
     };
 
     return <ReturnButton onClick={handleReturnMoney}>반환</ReturnButton>;
