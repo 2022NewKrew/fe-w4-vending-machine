@@ -18,7 +18,7 @@ const Button = styled.button`
 `;
 
 export default function MoneyUnit({ id, num, value }) {
-    const { setInsertedMoney, setMoneyHave } = useStore();
+    const { setInsertedMoney, setMoneyHave, setLogList } = useStore();
 
     const handleInsertedMoney = () => {
         if (num === 0) {
@@ -30,6 +30,10 @@ export default function MoneyUnit({ id, num, value }) {
             newState[id].num -= 1;
             return newState;
         });
+        setLogList((prevState) => [
+            ...prevState,
+            `${value.toLocaleString()}원이 투입됐음.`,
+        ]);
     };
 
     return (
