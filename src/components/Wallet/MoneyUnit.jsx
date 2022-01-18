@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useMoneyContext } from '../../context/MoneyProvider';
+import { useStore } from '../../context/Store';
 
 const Wrapper = styled.li`
     &:after {
@@ -18,7 +18,7 @@ const Button = styled.button`
 `;
 
 export default function MoneyUnit({ id, num, value }) {
-    const { setInsertedMoney, setMoneyHave } = useMoneyContext();
+    const { setInsertedMoney, setMoneyHave } = useStore();
 
     const handleInsertedMoney = () => {
         if (num === 0) {

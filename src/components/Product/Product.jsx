@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useMoneyContext } from '../../context/MoneyProvider';
+import { useStore } from '../../context/Store';
 
 const Wrapper = styled.li`
     width: 69px;
@@ -22,7 +22,7 @@ const ProductButton = styled.button`
 `;
 
 export default function Product({ name, price }) {
-    const { insertedMoney, setInsertedMoney } = useMoneyContext();
+    const { insertedMoney, setInsertedMoney } = useStore();
 
     const selectable = insertedMoney >= price;
 

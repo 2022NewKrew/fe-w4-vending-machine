@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useMoneyContext } from '../../context/MoneyProvider';
+import { useStore } from '../../context/Store';
 
 const ReturnButton = styled.button`
     width: 100%;
@@ -9,7 +9,7 @@ const ReturnButton = styled.button`
 `;
 
 export default function ReturnChangeButton() {
-    const { insertedMoney, setInsertedMoney, setMoneyHave } = useMoneyContext();
+    const { insertedMoney, setInsertedMoney, setMoneyHave } = useStore();
 
     const handleReturnMoney = () => {
         if (insertedMoney === 0) {

@@ -10,21 +10,29 @@ const items = [
     { id: 6, num: 0, value: 10000 },
 ];
 
-const MoneyContext = createContext();
+const StoreContext = createContext();
 
-export function useMoneyContext() {
-    return useContext(MoneyContext);
+export function useStore() {
+    return useContext(StoreContext);
 }
 
-export function MoneyProvider({ children }) {
+export function StoreProvider({ children }) {
     const [insertedMoney, setInsertedMoney] = useState(0);
     const [moneyHave, setMoneyHave] = useState(items);
+    const [log, setLog] = useState([]);
 
     return (
-        <MoneyContext.Provider
-            value={{ insertedMoney, setInsertedMoney, moneyHave, setMoneyHave }}
+        <StoreContext.Provider
+            value={{
+                insertedMoney,
+                setInsertedMoney,
+                moneyHave,
+                setMoneyHave,
+                log,
+                setLog,
+            }}
         >
             {children}
-        </MoneyContext.Provider>
+        </StoreContext.Provider>
     );
 }

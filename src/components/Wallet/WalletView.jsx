@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import MoneyUnit from './MoneyUnit';
 import TotalMoney from './TotalMoney';
 import { wrapContainer } from '../../style';
-import { useMoneyContext } from '../../context/MoneyProvider';
+import { useStore } from '../../context/Store';
 
 const Wrapper = styled.ul`
     ${wrapContainer}
@@ -10,7 +10,7 @@ const Wrapper = styled.ul`
 `;
 
 export default function WalletView() {
-    const { moneyHave } = useMoneyContext();
+    const { moneyHave } = useStore();
 
     const unitList = moneyHave.map(({ id, num, value }) => (
         <MoneyUnit key={id} id={id} num={num} value={value} />
