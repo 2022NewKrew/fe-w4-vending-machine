@@ -1,19 +1,34 @@
 import './App.css';
-import { useState } from 'react';
+import { getData } from './api';
+import { useEffect, useState } from 'react';
 import Product from './Product';
 import Progress from './Progress';
 import Wallet from './Wallet';
 
 function App() {
-  const [products, setProdcuts] = useState({});
-  const [slot, setSlot] = useState([]);
-  const [moneyInput, setMoneyInput] = useState([]);
+  const [products, setProdcuts] = useState([]);
+  const [slots, setSlots] = useState([]);
+  const [moneyInput, setMoneyInput] = useState(0);
+  const fetchInitialData = async (setFunc, URL) => {
+    const res = await getData(URL);
+    console.log(res);
+    await setFunc(res);
+    console.log(products, slots);
+  }
+
+  useEffect(() => {
+    fetchInitialData(setProdcuts, '/products');
+  }, []);
+
+  useEffect(() => {
+    fetchInitialData(setSlots, '/slots');
+  }, []);
 
   return (
-    <div class="#app">
-      <Product />
-      <Progress />
-      <Wallet />
+    <div id="app">
+      <Product products={products} moneyInput={moneyInput} />
+      <Progress moneyInput={moneyInput} />
+      <Wallet slots={slots} />
     </div>
   );
 }
