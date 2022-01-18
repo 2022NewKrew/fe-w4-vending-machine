@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import ProductView from './components/Product/ProductView';
 import ProgressView from './components/Progress/ProgressView';
 import WalletView from './components/Wallet/WalletView';
+import { GlobalStyle } from './style';
 
 const Wrapper = styled.div`
     margin: 0 auto;
@@ -17,6 +18,7 @@ const Wrapper = styled.div`
 
 export default function App() {
     return (
+            <GlobalStyle />
         <Wrapper>
             <ProductView />
             <ProgressView />
