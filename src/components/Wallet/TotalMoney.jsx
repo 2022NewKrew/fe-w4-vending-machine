@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-const totalPrice = 23500;
-
 const Wrapper = styled.div`
     border: 1px solid #000;
     margin: 5px;
@@ -13,10 +11,10 @@ const Wrapper = styled.div`
     }
 `;
 
-export default function TotalMoney() {
+export default function TotalMoney({ amount }) {
     return (
         <Wrapper>
-            <span>{totalPrice.toLocaleString()}원</span>
+            <span>{amount.toLocaleString()}원</span>
         </Wrapper>
     );
 }

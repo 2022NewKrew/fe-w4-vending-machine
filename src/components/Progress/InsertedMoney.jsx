@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useInputMoney } from '../../context/MoneyProvider';
+import { useMoneyContext } from '../../context/MoneyProvider';
 
 const Wrapper = styled.div`
     border: 1px solid #000;
@@ -9,7 +9,7 @@ const Wrapper = styled.div`
 `;
 
 export default function InsertedMoney() {
-    const { insertedMoney } = useInputMoney();
+    const { insertedMoney } = useMoneyContext();
 
     return (
         <Wrapper>
