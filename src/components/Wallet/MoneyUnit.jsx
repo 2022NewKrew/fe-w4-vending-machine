@@ -17,6 +17,7 @@ const Button = styled.button`
     border-radius: 5px;
 `;
 
+export default function MoneyUnit({ id, num, value, setMoneyHave }) {
     const { setInsertedMoney } = useInputMoney();
 
     const handleInsertedMoney = () => {

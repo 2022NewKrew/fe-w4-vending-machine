@@ -18,11 +18,13 @@ const Wrapper = styled.div`
 
 export default function App() {
     return (
+        <>
             <GlobalStyle />
-        <Wrapper>
-            <ProductView />
-            <ProgressView />
-            <WalletView />
-        </Wrapper>
+            <Wrapper>
+                <ProductView />
+                <ProgressView />
+                <WalletView />
+            </Wrapper>
+        </>
     );
 }

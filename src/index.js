@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import MoneyProvider from './context/MoneyProvider';
+import { MoneyProvider } from './context/MoneyProvider';
 
 ReactDOM.render(
     <React.StrictMode>
