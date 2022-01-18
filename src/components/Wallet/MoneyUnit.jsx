@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useStore } from '../../context/Store';
+import { deepcopy } from '../../utils';
 
 const Wrapper = styled.li`
     &:after {
@@ -26,7 +27,7 @@ export default function MoneyUnit({ id, num, value }) {
         }
         setInsertedMoney((prevState) => prevState + value);
         setMoneyHave((prevState) => {
-            const newState = JSON.parse(JSON.stringify(prevState));
+            const newState = deepcopy(prevState);
             newState[id].num -= 1;
             return newState;
         });

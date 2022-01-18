@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useStore } from '../../context/Store';
+import { deepcopy } from '../../utils';
 
 const ReturnButton = styled.button`
     width: 100%;
@@ -19,7 +20,7 @@ export default function ReturnChangeButton() {
 
         setInsertedMoney(0);
         setMoneyHave((prevState) => {
-            const newState = JSON.parse(JSON.stringify(prevState));
+            const newState = deepcopy(prevState);
             let leftMoney = insertedMoney;
             return newState
                 .reverse()

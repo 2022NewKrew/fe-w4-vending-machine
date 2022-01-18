@@ -46,7 +46,7 @@ export default function Product({ id, name, price, stock }) {
         setInsertedMoney((prevState) => prevState - price);
         setLogList((prevState) => [...prevState, `${name} 이(가) 선택 됨`]);
         setProductList((prevState) => {
-            const newState = JSON.parse(JSON.stringify(prevState));
+            const newState = deepcopy(prevState);
             newState[id].stock -= 1;
             return newState;
         });
