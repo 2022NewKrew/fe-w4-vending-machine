@@ -1,7 +1,37 @@
 import { useContext } from "react";
-import { MoneyContext, MessageContext } from "../App.js";
+import { MoneyContext, MessageContext } from "../App";
+import styled from "styled-components";
 
-export default function ProcessView({}) {
+const MessageContainer = styled.div`
+  height: 300px;
+  width: 100%;
+  border: 1px solid black;
+  overflow-y: auto;
+`;
+
+const ProcessContainer = styled.div`
+  margin: 20px 0 0 10px;
+  width: 30%;
+`;
+
+const RefundButton = styled.button`
+  width: 100%;
+  height: 50px;
+  background-color: #f28482;
+  color: #f7ede2;
+  cursor: pointer;
+  margin: 30px 0;
+`;
+
+const RemainingMoney = styled.div`
+  border: 1px solid black;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export default function ProcessView() {
   const { remainingMoney, refundMoney } = useContext(MoneyContext);
   const { messages } = useContext(MessageContext);
 
@@ -10,12 +40,10 @@ export default function ProcessView({}) {
   ));
 
   return (
-    <div className="process-view">
-      <div className="remaining-money">남은금액: {remainingMoney}원</div>
-      <button className="refund-button" onClick={refundMoney}>
-        반환
-      </button>
-      <div className="message-container">{messageList}</div>
-    </div>
+    <ProcessContainer>
+      <RemainingMoney>남은금액: {remainingMoney}원</RemainingMoney>
+      <RefundButton onClick={refundMoney}>반환</RefundButton>
+      <MessageContainer>{messageList}</MessageContainer>
+    </ProcessContainer>
   );
 }

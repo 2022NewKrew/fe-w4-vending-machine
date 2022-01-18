@@ -1,6 +1,15 @@
 import { useContext } from "react";
-import Product from "./Product";
-import { ProductContext, MoneyContext, MessageContext } from "../App.js";
+import styled from "styled-components";
+
+import Product from "./product/Product";
+import { ProductContext, MoneyContext, MessageContext } from "../App";
+
+const ProductContainer = styled.div`
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  height: 500px;
+`;
 
 export default function ProductView() {
   const { products, setProducts } = useContext(ProductContext);
@@ -12,12 +21,17 @@ export default function ProductView() {
     const currentQuantity = products[name].quantity;
 
     // 메시지 전송
-    if (remainingMoney < price || currentQuantity <= 0) {
+    if (remainingMoney < price) {
       const message = `잔액이 부족하여 ${name} 상품을 살 수 없습니다.`;
       setMessages((messages) => messages.concat(message));
       return;
     }
-    const message = `${name} 상품이 선택되었습니다`;
+    if (currentQuantity <= 0) {
+      const message = `${name} 상품이 더 이상 없습니다.`;
+      setMessages((messages) => messages.concat(message));
+      return;
+    }
+    const message = `${name} 상품이 선택되었습니다.`;
     setMessages((messages) => messages.concat(message));
 
     // 재고 수량 변경
@@ -40,5 +54,5 @@ export default function ProductView() {
     />
   ));
 
-  return <div className="product-view">{productList}</div>;
+  return <ProductContainer>{productList}</ProductContainer>;
 }

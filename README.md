@@ -1,12 +1,15 @@
 # fe-w4-vending-machine
 
-1. TODO List
+## Directory Tree
 
-- ~~리팩토링 대상~~
-  - App.js
-  - ProductView.js
-  - WalletView.js
-  - ~~setInsertedMoney, increaseMoney App.js 내 변수들 용어 수정~~
-- ~~반환 시 0원에서도 가능한 문제 수정~~
+```text
+src: 프로젝트 소스 파일 루트 디렉토리.
+│
+├─ components: React 컴포넌트들을 저장.
+│
+│
+│
+└─ data: 프로젝트 관련 데이터를 JSON 형식으로 저장.
 
-- scss 사용
+
+```

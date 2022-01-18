@@ -1,5 +1,40 @@
 import { useContext } from "react";
-import { MoneyContext, MessageContext } from "../App.js";
+import { MoneyContext, MessageContext } from "../App";
+import styled from "styled-components";
+
+const WalletContainer = styled.div`
+  margin-top: 10px;
+  width: 20%;
+`;
+
+const MoneyContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const MoneyItemDiv = styled.div`
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+  margin: 10px;
+`;
+
+const MoneyItemButton = styled.button`
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+  margin: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: #f6bd60;
+  }
+`;
 
 export default function WalletView() {
   const { totalMoney, increaseMoney, insertedMoney, setInsertedMoney } =
@@ -14,23 +49,22 @@ export default function WalletView() {
   }
 
   const moneyContainers = Object.entries(insertedMoney).map(([key, value]) => (
-    <div className="money-container" key={key}>
-      <button
-        className="money-item"
+    <MoneyContainer key={key}>
+      <MoneyItemButton
         onClick={() => {
           insertMoney(key);
         }}
       >
         {key}원
-      </button>
-      <div className="money-item">{value}개</div>
-    </div>
+      </MoneyItemButton>
+      <MoneyItemDiv>{value}개</MoneyItemDiv>
+    </MoneyContainer>
   ));
 
   return (
-    <div className="wallet-view">
+    <WalletContainer>
       {moneyContainers}
       <div>투입금액: {totalMoney}원</div>
-    </div>
+    </WalletContainer>
   );
 }
