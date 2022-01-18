@@ -1,8 +1,12 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import ProductView from "./components/ProductView";
 import ProcessView from "./components/ProcessView";
 import WalletView from "./components/WalletView";
+
+export const ProductContext = createContext(null);
+export const MoneyContext = createContext(null);
+export const MessageContext = createContext(null);
 
 function App() {
   const [totalMoney, setTotalMoney] = useState(0);
@@ -55,28 +59,27 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <ProductView
-        remainingMoney={remainingMoney}
-        setRemainingMoney={setRemainingMoney}
-        products={products}
-        setProducts={setProducts}
-        setMessages={setMessages}
-      ></ProductView>
-      <ProcessView
-        remainingMoney={remainingMoney}
-        setInsertedMoney={setInsertedMoney}
-        refundMoney={refundMoney}
-        messages={messages}
-      ></ProcessView>
-      <WalletView
-        insertedMoney={insertedMoney}
-        setInsertedMoney={setInsertedMoney}
-        totalMoney={totalMoney}
-        increaseMoney={increaseMoney}
-        setMessages={setMessages}
-      ></WalletView>
-    </div>
+    <ProductContext.Provider value={{ products, setProducts }}>
+      <MoneyContext.Provider
+        value={{
+          remainingMoney,
+          setRemainingMoney,
+          insertedMoney,
+          setInsertedMoney,
+          totalMoney,
+          increaseMoney,
+          refundMoney,
+        }}
+      >
+        <MessageContext.Provider value={{ messages, setMessages }}>
+          <div className="App">
+            <ProductView></ProductView>
+            <ProcessView></ProcessView>
+            <WalletView></WalletView>
+          </div>
+        </MessageContext.Provider>
+      </MoneyContext.Provider>
+    </ProductContext.Provider>
   );
 }
 

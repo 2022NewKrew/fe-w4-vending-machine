@@ -1,10 +1,10 @@
-export default function WalletView({
-  totalMoney,
-  increaseMoney,
-  insertedMoney,
-  setInsertedMoney,
-  setMessages,
-}) {
+import { useContext } from "react";
+import { MoneyContext, MessageContext } from "../App.js";
+
+export default function WalletView() {
+  const { totalMoney, increaseMoney, insertedMoney, setInsertedMoney } =
+    useContext(MoneyContext);
+  const { setMessages } = useContext(MessageContext);
   function insertMoney(key) {
     setInsertedMoney({ ...insertedMoney, [key]: insertedMoney[key] + 1 });
     increaseMoney(Number(key));

@@ -1,4 +1,9 @@
-export default function ProcessView({ refundMoney, remainingMoney, messages }) {
+import { useContext } from "react";
+import { MoneyContext, MessageContext } from "../App.js";
+
+export default function ProcessView({}) {
+  const { remainingMoney, refundMoney } = useContext(MoneyContext);
+  const { messages } = useContext(MessageContext);
   const messageList = messages.map((message, index) => (
     <div key={index}>{message}</div>
   ));

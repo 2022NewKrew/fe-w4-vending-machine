@@ -2,7 +2,7 @@
 
 1. TODO List
 
-- 리팩토링 대상
+- ~~리팩토링 대상~~
   - App.js
   - ProductView.js
   - WalletView.js
