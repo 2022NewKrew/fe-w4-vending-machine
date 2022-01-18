@@ -9,7 +9,7 @@ function App() {
   const [remainingMoney, setRemainingMoney] = useState(0);
   const [messages, setMessages] = useState([]);
   const [products, setProducts] = useState([]);
-  const [money, setMoney] = useState({
+  const [insertedMoney, setInsertedMoney] = useState({
     10: 0,
     50: 0,
     100: 0,
@@ -19,22 +19,30 @@ function App() {
     10000: 0,
   });
 
-  function addMoney(amount) {
+  /* 총액과 잔액에 amount 더하기  */
+  function increaseMoney(amount) {
     setTotalMoney((totalMoney) => totalMoney + amount);
     setRemainingMoney((remainingMoney) => remainingMoney + amount);
   }
 
+  /* 잔돈 반환 */
   function refundMoney() {
+    if (remainingMoney <= 0) {
+      const message = "잔돈이 0원이라 반환할 수 없습니다.";
+      setMessages((messages) => messages.concat(message));
+      return;
+    }
     const message = `잔돈 ${remainingMoney}원이 반환되었습니다`;
     setMessages((messages) => messages.concat(message));
     setTotalMoney(0);
     setRemainingMoney(0);
-    const keys = Object.keys(money);
+    // 각 동전 0원으로 변환
+    const keys = Object.keys(insertedMoney);
     const tmpMoney = {};
     keys.forEach((key) => {
       tmpMoney[key] = 0;
     });
-    setMoney(tmpMoney);
+    setInsertedMoney(tmpMoney);
   }
 
   useEffect(() => {
@@ -53,20 +61,19 @@ function App() {
         setRemainingMoney={setRemainingMoney}
         products={products}
         setProducts={setProducts}
-        messages={messages}
         setMessages={setMessages}
       ></ProductView>
       <ProcessView
         remainingMoney={remainingMoney}
-        setMoney={setMoney}
+        setInsertedMoney={setInsertedMoney}
         refundMoney={refundMoney}
         messages={messages}
       ></ProcessView>
       <WalletView
-        money={money}
-        setMoney={setMoney}
+        insertedMoney={insertedMoney}
+        setInsertedMoney={setInsertedMoney}
         totalMoney={totalMoney}
-        addMoney={addMoney}
+        increaseMoney={increaseMoney}
         setMessages={setMessages}
       ></WalletView>
     </div>

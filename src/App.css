@@ -114,6 +114,7 @@ button.money-item:hover {
   margin: auto 0;
   border: 1px solid grey;
   transition: 0.3s;
+  user-select: none;
 }
 
 .product-name {

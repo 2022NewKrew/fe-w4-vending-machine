@@ -6,7 +6,7 @@
   - App.js
   - ProductView.js
   - WalletView.js
-  - setMoney, addMoney App.js 내 변수들 용어 수정
-- 반환 시 0원에서도 가능한 문제 수정
+  - ~~setInsertedMoney, increaseMoney App.js 내 변수들 용어 수정~~
+- ~~반환 시 0원에서도 가능한 문제 수정~~
 
 - scss 사용
