@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import './ProgressView.css'
-import { ACTION_TYPE, InvestmentContext } from './InvestmentContext'
+import { ACTION_TYPE, InvestmentContext } from '../../Context/InvestmentContext'
 
 export const ProgressView = () => {
   const { state: contextState, dispatch } = useContext(InvestmentContext)

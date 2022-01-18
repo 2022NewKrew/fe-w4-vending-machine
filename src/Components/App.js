@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import ProductSelectionView from './ProductSelectionView'
-import { InvestmentSelectionView } from './InvestmentSelectionView'
+import ProductSelectionView from './Product/ProductSelectionView'
+import { InvestmentSelectionView } from './Investment/InvestmentSelectionView'
 import styles from './App.css'
-import InvestmentContextProvider from './InvestmentContext'
-import { ProgressView } from './ProgressView'
+import InvestmentContextProvider from '../Context/InvestmentContext'
+import { ProgressView } from './Progress/ProgressView'
 
 const App = () => {
   

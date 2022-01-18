@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react'
 import Product from './Product'
 import './ProductSelectionView.css'
-import { InvestmentContext, ACTION_TYPE } from './InvestmentContext'
-import { useDebouncing } from './hooks/useDebouncing'
+import { InvestmentContext, ACTION_TYPE } from '../../Context/InvestmentContext'
+import { useDebouncing } from '../../hooks/useDebouncing'
 
 const initialProductList = [
   {
