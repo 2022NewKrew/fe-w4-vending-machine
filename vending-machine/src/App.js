@@ -11,13 +11,7 @@ function App() {
   const [moneyInput, setMoneyInput] = useState(0);
   const fetchInitialData = async (setFunc, URL) => {
     const res = await getData(URL);
-<<<<<<< HEAD
-    await setFunc(res);
-=======
-    console.log(res);
-    await setFunc(res);
-    console.log(products, slots);
->>>>>>> 6d1187d (Feat: 자판기 기본 틀과 props 기본 구성)
+    setFunc(res);
   }
 
   useEffect(() => {
