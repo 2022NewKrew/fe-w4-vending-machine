@@ -1,10 +1,16 @@
 import { BASE_URL } from "../config/config";
 
-const getData = async (URL) => {
-  const res = await fetch(`${BASE_URL}${URL}`);
+const getProducts = async () => {
+  const res = await fetch(`${BASE_URL}/products`);
+  return await res.json();
+}
+
+const getSlots = async () => {
+  const res = await fetch(`${BASE_URL}/slots`);
   return await res.json();
 }
 
 export {
-  getData,
+  getProducts,
+  getSlots,
 }

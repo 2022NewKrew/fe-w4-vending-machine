@@ -16,10 +16,11 @@ function App() {
 
   useEffect(() => {
     fetchInitialData(setProdcuts, '/products');
+    fetchInitialData(setSlots, '/slots');
   }, []);
 
   useEffect(() => {
-    fetchInitialData(setSlots, '/slots');
+
   }, []);
 
   return (
