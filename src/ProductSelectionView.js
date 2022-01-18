@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import Product from './Product'
-import { InvestmentContext } from './InvestmentContext'
+import './ProductSelectionView.css'
+import { InvestmentContext, ACTION_TYPE } from './InvestmentContext'
 
 const initialProductList = [
   {
@@ -16,7 +17,7 @@ const initialProductList = [
   {
     title: '파인애플맛 환타',
     price: 2500,
-    count: 7
+    count: 3
   },
   {
     title: '포도맛 환타',
@@ -69,22 +70,42 @@ let timeId
 
 const ProductSelectionView = (props) => {
   const [productList, setProductList] = useState(initialProductList)
-  const { investment, setInvestment } = useContext(InvestmentContext)
+  const { state: contextState, dispatch } = useContext(InvestmentContext)
   
-  const productClickListener = (price) => {
-    setInvestment(investment - price)
+  const productClickListener = (idx) => {
+    const { title, price, count } = productList[idx]
+    
+    if (contextState.investment - price >= 0 && count > 0) {
+      dispatch({
+        type: ACTION_TYPE.PURCHASE_PRODUCT,
+        price: price,
+        productName: title
+      })
+      productList[idx].count -= 1
+      setProductList([...productList])
+      
+      clearTimeout(timeId)
+      
+      timeId = setTimeout(() => {
+        dispatch({
+          type: ACTION_TYPE.RETURN_EXCHANGE
+        })
+      }, 2000)
+    }
   }
   
   return (
-    <div>
+    <div className="product-selection">
       {
-        productList.map((product, idx) => (
-          <Product
-            key={idx}
+        productList.map((product, idx) => {
+          return (<Product
+            key={ idx }
+            idx={ idx }
             title={ product.title }
             price={ product.price }
-            available={ investment >= product.price && product.count > 0 }
-            clickListener={ productClickListener } />))
+            available={ contextState.investment >= product.price && product.count > 0 }
+            clickListener={ productClickListener } />)
+        })
       }
     </div>
   )

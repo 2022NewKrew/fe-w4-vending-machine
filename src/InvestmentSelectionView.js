@@ -26,7 +26,15 @@ export const InvestmentSelectionView = () => {
               count={ count }
               clickListener={ investmentClickListener } />))
       }
-      <div>{ contextState.investment }</div>
+      <div className="total-amount">
+        {
+          Object.entries(contextState.wallet)
+            .reduce((accumulator, [amount, count]) =>
+                accumulator + Number.parseInt(amount) * count
+              , 0)
+          + '원'
+        }
+      </div>
     </div>
   )
 }

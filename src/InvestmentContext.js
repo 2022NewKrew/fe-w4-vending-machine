@@ -61,7 +61,6 @@ function reducer(state, action) {
         log: state.log + `잔돈 ${ state.investment }원 반환\n`
       }
     
-    
     default:
       return state
   }

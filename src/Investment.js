@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './Investment.css'
 
-export const Investment = (props) => {
+const Investment = (props) => {
   return (
     <>
-      <li onClick={ () => {
-        props.clickListener(props.investment)
+      <li className="investment" onClick={ () => {
+        props.clickListener(props.investment);
       } }>
         <div className="investment-amount">{ `${ props.investment }원` }</div>
         <div className="investment-count">{ `${ props.count }개` }</div>
@@ -20,3 +20,5 @@ Investment.propTypes = {
   count: PropTypes.number.isRequired,
   investment: PropTypes.string.isRequired
 }
+
+export default Investment;
