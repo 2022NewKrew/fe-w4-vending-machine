@@ -29,7 +29,7 @@ export default function ProductView() {
     } else if (currentQuantity <= 0) {
       message = `${name} 상품이 더 이상 없습니다.`;
     } else {
-      message = `${name} 상품이 선택되었습니다.`;
+      message = `${name} 상품이 선택되었습니다. 잠시만 기다려주세요.`;
 
       // 잔액 변경
       setRemainingMoney((remainingMoney) => remainingMoney - price);
@@ -38,22 +38,22 @@ export default function ProductView() {
       const tmpProducts = { ...products };
       tmpProducts[name].quantity -= 1;
       setProducts(tmpProducts);
+
+      setTimeout(() => {
+        message = `${name} 상품이 나왔습니다.`;
+        setMessages((messages) => messages.concat(message));
+      }, 2000);
+
+      setRefundHandler((refundHandler) => {
+        if (refundHandler !== undefined) {
+          clearTimeout(refundHandler);
+        }
+        return setTimeout(() => {
+          setRemainingMoney((remainingMoney) => refundMoney(remainingMoney));
+        }, 2000);
+      });
     }
     setMessages((messages) => messages.concat(message));
-
-    setTimeout(() => {
-      message = `${name} 상품이 나왔습니다.`;
-      setMessages((messages) => messages.concat(message));
-    }, 2000);
-
-    setRefundHandler((refundHandler) => {
-      if (refundHandler !== undefined) {
-        clearTimeout(refundHandler);
-      }
-      return setTimeout(() => {
-        setRemainingMoney((remainingMoney) => refundMoney(remainingMoney));
-      }, 2000);
-    });
   }
 
   const productList = Object.keys(products).map((name) => (
