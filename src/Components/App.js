@@ -1,9 +1,9 @@
 import React from 'react'
 import ProductSelectionView from './Product/ProductSelectionView'
-import { InvestmentSelectionView } from './Investment/InvestmentSelectionView'
+import InvestmentSelectionView from './Investment/InvestmentSelectionView'
 import './App.css'
 import InvestmentContextProvider from '../Context/InvestmentContext'
-import { ProgressView } from './Progress/ProgressView'
+import ProgressView from './Progress/ProgressView'
 
 const App = () => {
   return (

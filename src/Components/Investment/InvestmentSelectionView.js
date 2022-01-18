@@ -3,7 +3,7 @@ import Investment from './Investment'
 import { ACTION_TYPE, InvestmentContext } from '../../Context/InvestmentContext'
 import './InvestmentSelectionView.css'
 
-export const InvestmentSelectionView = () => {
+const InvestmentSelectionView = () => {
   const { state: contextState, dispatch } = useContext(InvestmentContext)
   
   const investmentClickListener = (amount) => {
@@ -38,3 +38,5 @@ export const InvestmentSelectionView = () => {
     </div>
   )
 }
+
+export default InvestmentSelectionView;

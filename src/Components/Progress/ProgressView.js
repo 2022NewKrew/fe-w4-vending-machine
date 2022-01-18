@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import './ProgressView.css'
 import { ACTION_TYPE, InvestmentContext } from '../../Context/InvestmentContext'
 
-export const ProgressView = () => {
+const ProgressView = () => {
   const { state: contextState, dispatch } = useContext(InvestmentContext)
   const exchangeClickListener = () => {
     dispatch({
@@ -22,3 +22,5 @@ export const ProgressView = () => {
     </div>
   )
 }
+
+export default ProgressView
