@@ -1,6 +1,6 @@
 import './Wallet.css';
 function Wallet({ slots }) {
-  const slotsList = slots.map(slot =>
+  const slotsList = slots.map((slot, idx) =>
     <li className="wallet__slot">{slot}원</li>
   );
 

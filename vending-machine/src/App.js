@@ -11,9 +11,7 @@ function App() {
   const [moneyInput, setMoneyInput] = useState(0);
   const fetchInitialData = async (setFunc, URL) => {
     const res = await getData(URL);
-    console.log(res);
     await setFunc(res);
-    console.log(products, slots);
   }
 
   useEffect(() => {
