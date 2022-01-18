@@ -26,7 +26,7 @@ function reducer(state, action) {
       return {
         ...state,
         investment: state.investment - action.price,
-        log: state.log + `\n${ action.productName }가 구매됨`
+        log: state.log + `${ action.productName }이(가) 구매됨\n`
       }
     
     case ACTION_TYPE.ADD_INVESTMENT:
@@ -36,22 +36,29 @@ function reducer(state, action) {
         wallet: {
           ...state.wallet,
           [action.amount]: state.wallet[action.amount] - 1
-        }
+        },
+        log: state.log + `${action.amount}원이 투입됨\n`
       }
-      
+    
     case ACTION_TYPE.RETURN_EXCHANGE:
-      Object.keys(state.wallet)
+      const wallet = { ...state.wallet }
+      let investment = state.investment
+      
+      Object.keys(wallet)
+        .sort((amount1, amount2) => Number.parseInt(amount1) > Number.parseInt(amount2) ? -1 : 1)
         .forEach(amount => {
-          if (state.investment >= amount) {
-            const count = Math.floor(state.investment / amount)
-            state.wallet[amount] += count
-            state.investment -= count * amount
+          if (investment >= amount) {
+            const count = Math.floor(investment / amount)
+            wallet[amount] += count
+            investment -= count * amount
           }
         })
       
       return {
         ...state,
-        log: state.log + `\n잔돈 ${ state.investment }원 반환`
+        wallet,
+        investment,
+        log: state.log + `잔돈 ${ state.investment }원 반환\n`
       }
     
     

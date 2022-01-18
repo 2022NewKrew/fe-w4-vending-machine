@@ -65,6 +65,8 @@ const initialProductList = [
   }
 ]
 
+let timeId
+
 const ProductSelectionView = (props) => {
   const [productList, setProductList] = useState(initialProductList)
   const { investment, setInvestment } = useContext(InvestmentContext)

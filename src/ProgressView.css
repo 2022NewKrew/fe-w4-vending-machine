@@ -1,0 +1,45 @@
+.progress{
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  padding: 30px;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.inserted-investment{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 200px;
+  height: 60px;
+  border: 1px solid grey;
+  margin:20px;
+  padding:0 30px;
+}
+
+.inserted-investment-text{
+  font-size: 2rem;
+}
+
+.exchange{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 60px;
+  border: 1px solid grey;
+  margin:20px;
+  padding:0 30px;
+}
+
+.log-container{
+  width: 200px;
+  height: 300px;
+  border: 1px solid grey;
+  margin:20px;
+  padding: 10px;
+  white-space: pre-wrap;
+  overflow-y: scroll;
+}
