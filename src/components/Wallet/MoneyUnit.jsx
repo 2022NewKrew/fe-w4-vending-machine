@@ -27,8 +27,8 @@ export default function MoneyUnit({ num, value, idx, setMoneyHave }) {
         }
         setInsertedMoney((prevState) => prevState + value);
         setMoneyHave((prevState) => {
-            const newState = [...prevState];
-            newState[idx].num = num - 1;
+            const newState = JSON.parse(JSON.stringify(prevState));
+            newState[id].num -= 1;
             return newState;
         });
     };
