@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef, useEffect } from "react";
 import { MoneyContext, MessageContext } from "../App";
 import styled from "styled-components";
 
@@ -36,6 +36,16 @@ export default function ProcessView() {
     useContext(MoneyContext);
   const { messages } = useContext(MessageContext);
 
+  // 스크롤 관련
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(scrollToBottom, [messages]);
+
+  //메시지 컴포넌트
   const messageList = messages.map((message, index) => (
     <div key={index}>{message}</div>
   ));
@@ -50,7 +60,10 @@ export default function ProcessView() {
       >
         반환
       </RefundButton>
-      <MessageContainer>{messageList}</MessageContainer>
+      <MessageContainer>
+        {messageList}
+        <div ref={messagesEndRef}></div>
+      </MessageContainer>
     </ProcessContainer>
   );
 }
