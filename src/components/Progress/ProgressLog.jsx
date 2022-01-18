@@ -18,7 +18,7 @@ export default function ProgressLog() {
     const { logList } = useStore();
     const logBoxRef = useRef();
 
-    const logs = logList.map((log) => <Log>{log}</Log>);
+    const logs = logList.map((log, index) => <Log key={index}>{log}</Log>);
 
     useEffect(() => {
         if (logBoxRef.current) {
