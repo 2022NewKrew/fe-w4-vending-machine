@@ -30,23 +30,23 @@ function App() {
   }
 
   /* 잔돈 반환 */
-  function refundMoney() {
+  function refundMoney(remainingMoney) {
     if (remainingMoney <= 0) {
       const message = "잔돈이 0원이라 반환할 수 없습니다.";
       setMessages((messages) => messages.concat(message));
-      return;
+      return 0;
     }
     const message = `잔돈 ${remainingMoney}원이 반환되었습니다`;
     setMessages((messages) => messages.concat(message));
     setTotalMoney(0);
-    setRemainingMoney(0);
-    // 각 동전 0원으로 변환
+    // 각 동전 0개로 변환
     const keys = Object.keys(insertedMoney);
     const tmpMoney = {};
     keys.forEach((key) => {
       tmpMoney[key] = 0;
     });
     setInsertedMoney(tmpMoney);
+    return 0;
   }
 
   useEffect(() => {

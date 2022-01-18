@@ -42,22 +42,3 @@
     transform: rotate(360deg);
   }
 }
-
-.product-container.buyable {
-  box-shadow: inset 0 0 5px green;
-  cursor: pointer;
-}
-
-.product-container.buyable:hover {
-  box-shadow: inset 0 0 15px rgb(15, 145, 89);
-}
-
-.product-container.out-of-stock {
-  box-shadow: inset 0 0 5px #282c34;
-  cursor: not-allowed;
-}
-
-.product-container.not-buyable {
-  box-shadow: inset 0 0 5px crimson;
-  cursor: not-allowed;
-}

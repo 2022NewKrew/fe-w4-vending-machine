@@ -32,7 +32,8 @@ const RemainingMoney = styled.div`
 `;
 
 export default function ProcessView() {
-  const { remainingMoney, refundMoney } = useContext(MoneyContext);
+  const { remainingMoney, setRemainingMoney, refundMoney } =
+    useContext(MoneyContext);
   const { messages } = useContext(MessageContext);
 
   const messageList = messages.map((message, index) => (
@@ -42,7 +43,13 @@ export default function ProcessView() {
   return (
     <ProcessContainer>
       <RemainingMoney>남은금액: {remainingMoney}원</RemainingMoney>
-      <RefundButton onClick={refundMoney}>반환</RefundButton>
+      <RefundButton
+        onClick={() => {
+          setRemainingMoney((remainingMoney) => refundMoney(remainingMoney));
+        }}
+      >
+        반환
+      </RefundButton>
       <MessageContainer>{messageList}</MessageContainer>
     </ProcessContainer>
   );

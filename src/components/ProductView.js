@@ -13,34 +13,36 @@ const ProductContainer = styled.div`
 
 export default function ProductView() {
   const { products, setProducts } = useContext(ProductContext);
-  const { remainingMoney, setRemainingMoney } = useContext(MoneyContext);
+  const { remainingMoney, setRemainingMoney, refundMoney } =
+    useContext(MoneyContext);
   const { setMessages } = useContext(MessageContext);
 
   function buyProduct(name) {
     const price = products[name].price;
     const currentQuantity = products[name].quantity;
+    let message;
 
     // 메시지 전송
     if (remainingMoney < price) {
-      const message = `잔액이 부족하여 ${name} 상품을 살 수 없습니다.`;
-      setMessages((messages) => messages.concat(message));
-      return;
-    }
-    if (currentQuantity <= 0) {
-      const message = `${name} 상품이 더 이상 없습니다.`;
-      setMessages((messages) => messages.concat(message));
-      return;
-    }
-    const message = `${name} 상품이 선택되었습니다.`;
-    setMessages((messages) => messages.concat(message));
+      message = `잔액이 부족하여 ${name} 상품을 살 수 없습니다.`;
+    } else if (currentQuantity <= 0) {
+      message = `${name} 상품이 더 이상 없습니다.`;
+    } else {
+      message = `${name} 상품이 선택되었습니다.`;
 
-    // 재고 수량 변경
-    const tmpProducts = { ...products };
-    tmpProducts[name].quantity -= 1;
-    setProducts(tmpProducts);
+      // 잔액 변경
+      setRemainingMoney((remainingMoney) => remainingMoney - price);
 
-    // 잔액 변경
-    setRemainingMoney((remainingMoney) => remainingMoney - price);
+      // 재고 수량 변경
+      const tmpProducts = { ...products };
+      tmpProducts[name].quantity -= 1;
+      setProducts(tmpProducts);
+    }
+
+    setTimeout(() => {
+      setMessages((messages) => messages.concat(message));
+      setRemainingMoney((remainingMoney) => refundMoney(remainingMoney));
+    }, 2000);
   }
 
   const productList = Object.keys(products).map((name) => (

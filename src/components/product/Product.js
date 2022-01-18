@@ -43,7 +43,7 @@ export default function Product({
       price={price}
     >
       <ProductName>{name}</ProductName>
-      <div className="product-price">{price}원</div>
+      <div>{price}원</div>
     </StyledProduct>
   );
 }
