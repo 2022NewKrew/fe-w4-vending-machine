@@ -5,20 +5,12 @@ export default function Product({
   remainingMoney,
   buyProduct,
 }) {
-  function isNotInStock() {
-    return quantity <= 0;
-  }
-
-  function isNotBuyable() {
-    return remainingMoney < price;
-  }
-
   function getClassName() {
     const className = "product-container ";
-    if (isNotInStock()) {
+    if (quantity <= 0) {
       return className + "out-of-stock";
     }
-    if (isNotBuyable()) {
+    if (remainingMoney < price) {
       return className + "not-buyable";
     }
     return className + "buyable";

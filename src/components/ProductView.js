@@ -25,6 +25,7 @@ export default function ProductView() {
     tmpProducts[name].quantity -= 1;
     setProducts(tmpProducts);
 
+    // 잔액 변경
     setRemainingMoney((remainingMoney) => remainingMoney - price);
   }
 
