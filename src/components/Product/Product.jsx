@@ -22,7 +22,7 @@ const ProductButton = styled.button`
 `;
 
 export default function Product({ name, price }) {
-    const { insertedMoney, setInsertedMoney } = useStore();
+    const { insertedMoney, setInsertedMoney, setLogList } = useStore();
 
     const selectable = insertedMoney >= price;
 
@@ -32,6 +32,7 @@ export default function Product({ name, price }) {
         }
 
         setInsertedMoney((prevState) => prevState - price);
+        setLogList((prevState) => [...prevState, `${name} 이(가) 선택 됨`]);
     };
 
     return (
