@@ -64,3 +64,14 @@ export const GlobalStyle = createGlobalStyle`
         border: 0;
     }
 `;
+
+export const wrapContainer = css`
+    box-sizing: border-box;
+    width: 400px;
+    height: 500px;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-left: 1px solid #000;
+    padding: 20px;
+    float: left;
+`;

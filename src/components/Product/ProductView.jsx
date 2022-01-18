@@ -1,5 +1,6 @@
 import Product from './Product';
 import styled from 'styled-components';
+import { wrapContainer } from '../../style';
 
 const items = [
     { name: '사이다', price: 1000 },
@@ -10,12 +11,7 @@ const items = [
 ];
 
 const Wrapper = styled.ul`
-    box-sizing: border-box;
-    width: 400px;
-    height: 500px;
-    border: 1px solid #000;
-    padding: 20px;
-    float: left;
+    ${wrapContainer}
 
     &:after {
         content: '';

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import MoneyUnit from './MoneyUnit';
 import TotalMoney from './TotalMoney';
+import { wrapContainer } from '../../style';
 
 const items = [
     { num: 0, value: 10 },
@@ -14,12 +15,8 @@ const items = [
 ];
 
 const Wrapper = styled.ul`
-    box-sizing: border-box;
-    width: 400px;
-    height: 500px;
-    border: 1px solid #000;
-    padding: 20px;
-    float: left;
+    ${wrapContainer}
+    border-right: 1px solid #000;
 `;
 
 export default function WalletView() {

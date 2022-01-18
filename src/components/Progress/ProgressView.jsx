@@ -2,14 +2,10 @@ import styled from 'styled-components';
 import InsertedMoney from './InsertedMoney';
 import ReturnChangeButton from './ReturnChangeButton';
 import ProgressLog from './ProgressLog';
+import { wrapContainer } from '../../style';
 
 const Wrapper = styled.div`
-    box-sizing: border-box;
-    width: 400px;
-    height: 500px;
-    border: 1px solid #000;
-    padding: 20px;
-    float: left;
+    ${wrapContainer}
 `;
 
 export default function ProgressView() {
