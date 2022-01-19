@@ -2,7 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 
 import Product from "./product/Product";
-import { ProductContext, MoneyContext, MessageContext } from "../App";
+import { ContextStore } from "../context/context";
 
 const ProductContainer = styled.div`
   width: 50%;
@@ -12,13 +12,17 @@ const ProductContainer = styled.div`
 `;
 
 export default function ProductView() {
-  const { products, setProducts, setRefundFlag } = useContext(ProductContext);
-  const { remainingMoney, setRemainingMoney } =
-    useContext(MoneyContext);
-  const { setMessages } = useContext(MessageContext);
+  const {
+    products,
+    setProducts,
+    setRefundFlag,
+    remainingMoney,
+    setRemainingMoney,
+    setMessages,
+  } = useContext(ContextStore);
 
   function buyProduct(name) {
-    const price = products[name].price;
+    const { price } = products[name];
     const currentQuantity = products[name].quantity;
     let message;
 

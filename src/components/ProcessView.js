@@ -1,7 +1,7 @@
-import { useContext, useRef, useEffect } from "react";
-import { MoneyContext, MessageContext } from "../App";
+import { useContext, useRef } from "react";
+import { ContextStore } from "../context/context";
 import styled from "styled-components";
-
+import useScrollToBottom from "../common/scroll";
 const MessageContainer = styled.div`
   height: 300px;
   width: 100%;
@@ -32,18 +32,18 @@ const RemainingMoney = styled.div`
 `;
 
 export default function ProcessView() {
-  const { remainingMoney, setRemainingMoney, refundMoney } =
-    useContext(MoneyContext);
-  const { messages } = useContext(MessageContext);
+  const { remainingMoney, setRemainingMoney, refundMoney, messages } =
+    useContext(ContextStore);
 
   // 스크롤 관련
   const messagesEndRef = useRef(null);
+  useScrollToBottom(messagesEndRef);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-  };
+  // const scrollToBottom = () => {
+  //   messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  // };
 
-  useEffect(scrollToBottom, [messages]);
+  // useEffect(scrollToBottom, [messages]);
 
   //메시지 컴포넌트
   const messageList = messages.map((message, index) => (
@@ -56,8 +56,7 @@ export default function ProcessView() {
       <RefundButton
         onClick={() => {
           setRemainingMoney((remainingMoney) => refundMoney(remainingMoney));
-        }}
-      >
+        }}>
         반환
       </RefundButton>
       <MessageContainer>

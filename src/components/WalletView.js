@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { MoneyContext, MessageContext } from "../App";
 import styled from "styled-components";
+import { ContextStore } from "../context/context";
 
 const WalletContainer = styled.div`
   margin-top: 10px;
@@ -37,9 +37,14 @@ const MoneyItemButton = styled.button`
 `;
 
 export default function WalletView() {
-  const { totalMoney, increaseMoney, insertedMoney, setInsertedMoney } =
-    useContext(MoneyContext);
-  const { setMessages } = useContext(MessageContext);
+  const {
+    totalMoney,
+    increaseMoney,
+    insertedMoney,
+    setInsertedMoney,
+    setMessages,
+  } = useContext(ContextStore);
+
   function insertMoney(key) {
     setInsertedMoney({ ...insertedMoney, [key]: insertedMoney[key] + 1 });
     increaseMoney(Number(key));
@@ -53,8 +58,7 @@ export default function WalletView() {
       <MoneyItemButton
         onClick={() => {
           insertMoney(key);
-        }}
-      >
+        }}>
         {key}원
       </MoneyItemButton>
       <MoneyItemDiv>{value}개</MoneyItemDiv>
