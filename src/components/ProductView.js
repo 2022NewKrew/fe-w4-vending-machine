@@ -18,7 +18,7 @@ export default function ProductView() {
     setRefundFlag,
     remainingMoney,
     setRemainingMoney,
-    setMessages,
+    pushMessage,
   } = useContext(ContextStore);
 
   function buyProduct(name) {
@@ -46,10 +46,10 @@ export default function ProductView() {
 
       setTimeout(() => {
         message = `${name} 상품이 나왔습니다.`;
-        setMessages((messages) => messages.concat(message));
+        pushMessage(message);
       }, 2000);
     }
-    setMessages((messages) => messages.concat(message));
+    pushMessage(message);
   }
 
   const productList = Object.keys(products).map((name) => (

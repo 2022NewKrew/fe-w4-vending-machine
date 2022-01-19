@@ -42,7 +42,7 @@ export default function WalletView() {
     increaseMoney,
     insertedMoney,
     setInsertedMoney,
-    setMessages,
+    pushMessage,
   } = useContext(ContextStore);
 
   function insertMoney(key) {
@@ -50,7 +50,7 @@ export default function WalletView() {
     increaseMoney(Number(key));
 
     const message = `${key}원이 투입되었습니다.`;
-    setMessages((messages) => messages.concat(message));
+    pushMessage(message);
   }
 
   const moneyContainers = Object.entries(insertedMoney).map(([key, value]) => (

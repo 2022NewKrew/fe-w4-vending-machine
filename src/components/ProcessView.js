@@ -35,17 +35,9 @@ export default function ProcessView() {
   const { remainingMoney, setRemainingMoney, refundMoney, messages } =
     useContext(ContextStore);
 
-  // 스크롤 관련
   const messagesEndRef = useRef(null);
   useScrollToBottom(messagesEndRef);
 
-  // const scrollToBottom = () => {
-  //   messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-  // };
-
-  // useEffect(scrollToBottom, [messages]);
-
-  //메시지 컴포넌트
   const messageList = messages.map((message, index) => (
     <div key={index}>{message}</div>
   ));

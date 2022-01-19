@@ -79,7 +79,7 @@ const AppContext = (props) => {
         increaseMoney,
         refundMoney,
         messages,
-        setMessages,
+        pushMessage,
       }}>
       {props.children}
     </ContextStore.Provider>
