@@ -65,7 +65,7 @@ function App() {
       tempMoneyInput -= coin * quotient;
 
       if (quotient > 0) {
-        addToProgressLogList(`${coin}원 ${quotient}개 반환.`)
+        addToProgressLogList(`${coin}원 ${quotient}개 반환.`);
       }
     })
 
@@ -86,7 +86,7 @@ function App() {
     const newWalletCounterList = [...walletCounterList];
 
     newWalletCounterList[idx] -= 1;
-    setWalletCounterList(newWalletCounterList)
+    setWalletCounterList(newWalletCounterList);
   };
 
   const addToProgressLogList = (log) => {
