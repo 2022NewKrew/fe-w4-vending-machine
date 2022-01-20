@@ -13,6 +13,7 @@
 }
 
 .progress__return {
+  cursor: pointer;
   text-align: center;
   padding: 30px;
   border: 3px solid grey;
@@ -21,13 +22,9 @@
 }
 
 .progress__list {
-  font-size: 15px;
+  font-size: 25px;
   border: 3px solid grey;
   padding: 10px;
   height: 450px;
   overflow: scroll;
-}
-
-.progress__list::-webkit-scrollbar {
-  display: none;
 }

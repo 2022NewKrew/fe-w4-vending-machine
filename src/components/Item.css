@@ -1,0 +1,25 @@
+.item__wrapper_active {
+  background-color:  #C4EA70;
+  text-align: center;
+  cursor: pointer;
+  padding-top: 20px;
+}
+
+
+.item__wrapper_inactive {
+  background-color: #FF5563;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.item__name {
+  font-size: 25px;
+}
+
+.item__price {
+  margin-top: 10px;
+}
+
+.item__stock {
+  margin-top: 10px;
+}
